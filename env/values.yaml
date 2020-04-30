@@ -13,7 +13,7 @@ expose:
   - --v
   - 4
   config:
-    domain: cloudnativeentrepreneur.dev
+    domain: cloudnativeentrepreneur.com
     exposer: Ingress
     http: "true"
     tlsacme: "false"
