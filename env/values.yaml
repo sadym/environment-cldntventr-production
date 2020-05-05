@@ -20,13 +20,6 @@ auth:
       username: vault:production/auth/postgres:adminUsername
   keycloak-controller:
     replicaCount: 3
-    resources:
-      limits:
-        cpu: 250m
-        memory: 256Mi
-      requests:
-        cpu: 250m
-        memory: 256Mi
   keycloakAdminPassword: vault:production/auth/keycloak:adminPassword
   keycloakAdminUsername: vault:production/auth/keycloak:adminUsername
   postgresAdminPassword: vault:production/auth/postgres:adminPassword
@@ -42,6 +35,14 @@ auth:
         repmgrPassword: vault:production/auth/postgres:repmgrPassword
         repmgrUsername: vault:production/auth/postgres:repmgrUsername
         username: vault:production/auth/postgres:adminUsername
+    metrics:
+      resources:
+        limits:
+          cpu: 50m
+          memory: 20Mi
+        requests:
+          cpu: 50m
+          memory: 20Mi
     persistence:
       storageClass: ssd-retain
       size: 20Gi
