@@ -1,4 +1,35 @@
 PipelineSecrets: {}
+auth:
+  keycloak:
+    keycloak:
+      existingSecret: auth-keycloak
+      existingSecretKey: adminPassword
+      persistence:
+        dbHost: jx-postgresql-ha-pgpool.jx-production.svc.cluster.local
+        existingSecret: auth-postgres
+        existingSecretPasswordKey: adminPassword
+        existingSecretUsernameKey: adminUsername
+      replicas: 3
+      username: vault:production/auth/postgres:adminUsername
+  keycloakAdminPassword: vault:production/auth/keycloak:adminPassword
+  keycloakAdminUsername: vault:production/auth/keycloak:adminUsername
+  postgresAdminPassword: vault:production/auth/postgres:adminPassword
+  postgresAdminUsername: vault:production/auth/postgres:adminUsername
+  postgresql-ha:
+    global:
+      pgpool:
+        adminPassword: vault:production/auth/postgres:pgpoolAdminPassword
+        adminUsername: vault:production/auth/postgres:pgpoolAdminUsername
+      postgresql:
+        database: keycloak
+        password: vault:production/auth/postgres:adminPassword
+        repmgrPassword: vault:production/auth/postgres:repmgrPassword
+        repmgrUsername: vault:production/auth/postgres:repmgrUsername
+        username: vault:production/auth/postgres:adminUsername
+    pgpool:
+      replicaCount: 3
+    postgresql:
+      replicaCount: 3
 cleanup:
   Annotations:
     helm.sh/hook: pre-delete
