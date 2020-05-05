@@ -1,7 +1,7 @@
 dependencies:
 - name: auth
   repository: http://bucketrepo/bucketrepo/charts/
-  version: 0.0.39
+  version: 0.0.42
 - name: demo-app
   repository: http://bucketrepo/bucketrepo/charts/
   version: 0.0.5

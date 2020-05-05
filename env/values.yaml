@@ -10,9 +10,23 @@ auth:
         existingSecretPasswordKey: adminPassword
         existingSecretUsernameKey: adminUsername
       replicas: 3
+      resources:
+        limits:
+          cpu: 1
+          memory: 512Mi
+        requests:
+          cpu: 1
+          memory: 512Mi
       username: vault:production/auth/postgres:adminUsername
   keycloak-controller:
     replicaCount: 3
+    resources:
+      limits:
+        cpu: 250m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 256Mi
   keycloakAdminPassword: vault:production/auth/keycloak:adminPassword
   keycloakAdminUsername: vault:production/auth/keycloak:adminUsername
   postgresAdminPassword: vault:production/auth/postgres:adminPassword
@@ -28,10 +42,27 @@ auth:
         repmgrPassword: vault:production/auth/postgres:repmgrPassword
         repmgrUsername: vault:production/auth/postgres:repmgrUsername
         username: vault:production/auth/postgres:adminUsername
+    persistence:
+      storageClass: ssd-retain
+      size: 20Gi
     pgpool:
       replicaCount: 3
+      resources:
+        limits:
+          cpu: 250m
+          memory: 256Mi
+        requests:
+          cpu: 250m
+          memory: 256Mi
     postgresql:
       replicaCount: 3
+      resources:
+          limits:
+            cpu: 250m
+            memory: 256Mi
+          requests:
+            cpu: 250m
+            memory: 256Mi
 cleanup:
   Annotations:
     helm.sh/hook: pre-delete
