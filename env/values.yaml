@@ -1,3 +1,5 @@
+domain: &domain cloudnativeentrepreneur.com
+
 PipelineSecrets: {}
 auth:
   keycloak:
@@ -70,6 +72,14 @@ cleanup:
     helm.sh/hook-delete-policy: hook-succeeded
   Args:
   - --cleanup
+demo-app:
+  keycloak:
+    redirectUris:
+      allowAll: false
+      includeNamespace: false
+      domain: *domain
+      serviceName: demo-app
+    url: https://auth.cloudnativeentrepreneur.com
 expose:
   Annotations:
     helm.sh/hook: post-install,post-upgrade
@@ -78,7 +88,7 @@ expose:
   - --v
   - 4
   config:
-    domain: cloudnativeentrepreneur.com
+    domain: *domain
     exposer: Ingress
     http: "false"
     tlsSecretName: tls-cloudnativeentrepreneur-com-p
