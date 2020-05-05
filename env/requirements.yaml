@@ -1,10 +1,10 @@
 dependencies:
 - name: auth
   repository: http://bucketrepo/bucketrepo/charts/
-  version: 0.0.42
+  version: 0.0.43
 - name: demo-app
   repository: http://bucketrepo/bucketrepo/charts/
-  version: 0.0.8
+  version: 0.0.10
 - alias: expose
   name: exposecontroller
   repository: http://chartmuseum.jenkins-x.io
