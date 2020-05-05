@@ -11,6 +11,8 @@ auth:
         existingSecretUsernameKey: adminUsername
       replicas: 3
       username: vault:production/auth/postgres:adminUsername
+  keycloak-controller:
+    replicaCount: 3
   keycloakAdminPassword: vault:production/auth/keycloak:adminPassword
   keycloakAdminUsername: vault:production/auth/keycloak:adminUsername
   postgresAdminPassword: vault:production/auth/postgres:adminPassword
