@@ -64,6 +64,9 @@ auth:
           requests:
             cpu: 250m
             memory: 256Mi
+  realms:
+    dev: dev
+    members: members
 cleanup:
   Annotations:
     helm.sh/hook: pre-delete
@@ -73,6 +76,7 @@ cleanup:
 demo-app:
   keycloak:
     keycloak: keycloak-jx-production
+    realm: members
     redirectUris:
       allowAll: false
       includeNamespace: false
