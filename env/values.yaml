@@ -1,5 +1,3 @@
-domain: &domain cloudnativeentrepreneur.com
-
 PipelineSecrets: {}
 auth:
   keycloak:
@@ -44,8 +42,8 @@ auth:
           cpu: 50m
           memory: 20Mi
     persistence:
-      storageClass: ssd-retain
       size: 20Gi
+      storageClass: ssd-retain
     pgpool:
       replicaCount: 3
       resources:
@@ -58,12 +56,12 @@ auth:
     postgresql:
       replicaCount: 3
       resources:
-          limits:
-            cpu: 250m
-            memory: 256Mi
-          requests:
-            cpu: 250m
-            memory: 256Mi
+        limits:
+          cpu: 250m
+          memory: 256Mi
+        requests:
+          cpu: 250m
+          memory: 256Mi
   realms:
     dev: dev
     members: members
@@ -79,10 +77,11 @@ demo-app:
     realm: members
     redirectUris:
       allowAll: false
+      domain: cloudnativeentrepreneur.com
       includeNamespace: false
-      domain: *domain
       serviceName: demo-app
     url: https://auth.cloudnativeentrepreneur.com
+domain: cloudnativeentrepreneur.com
 expose:
   Annotations:
     helm.sh/hook: post-install,post-upgrade
@@ -91,12 +90,12 @@ expose:
   - --v
   - 4
   config:
-    domain: *domain
+    domain: cloudnativeentrepreneur.com
     exposer: Ingress
     http: "false"
     tlsSecretName: tls-cloudnativeentrepreneur-com-p
     tlsacme: "true"
-    urltemplate: '{{.Service}}.{{.Domain}}'
+    urltemplate: '{{.Service}}-{{.Namespace}}.{{.Domain}}'
   production: true
 jenkins:
   Servers:
