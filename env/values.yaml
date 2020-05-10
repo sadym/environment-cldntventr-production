@@ -9,6 +9,9 @@ auth:
         existingSecret: auth-postgres
         existingSecretPasswordKey: adminPassword
         existingSecretUsernameKey: adminUsername
+      podDisruptionBudget:
+        maxUnavailable: 1
+        minAvailable: 2
       priorityClassName: production
       replicas: 3
       resources:
@@ -46,24 +49,32 @@ auth:
       size: 20Gi
       storageClass: ssd-retain
     pgpool:
+      pdb:
+        create: true
+        minAvailable: 2
+        maxUnavailable: 1
       priorityClassName: production
       replicaCount: 3
       resources:
         limits:
-          cpu: 250m
+          cpu: 500m
           memory: 256Mi
         requests:
-          cpu: 250m
+          cpu: 500m
           memory: 256Mi
     postgresql:
+      pdb:
+        create: true
+        minAvailable: 2
+        maxUnavailable: 1
       priorityClassName: production
       replicaCount: 3
       resources:
         limits:
-          cpu: 250m
+          cpu: 500m
           memory: 256Mi
         requests:
-          cpu: 250m
+          cpu: 500m
           memory: 256Mi
   realms:
     dev: dev
