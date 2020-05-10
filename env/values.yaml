@@ -9,6 +9,7 @@ auth:
         existingSecret: auth-postgres
         existingSecretPasswordKey: adminPassword
         existingSecretUsernameKey: adminUsername
+      priorityClassName: production
       replicas: 3
       resources:
         limits:
@@ -45,6 +46,7 @@ auth:
       size: 20Gi
       storageClass: ssd-retain
     pgpool:
+      priorityClassName: production
       replicaCount: 3
       resources:
         limits:
@@ -54,6 +56,7 @@ auth:
           cpu: 250m
           memory: 256Mi
     postgresql:
+      priorityClassName: production
       replicaCount: 3
       resources:
         limits:
