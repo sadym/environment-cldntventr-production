@@ -11,7 +11,6 @@ auth:
         existingSecretUsernameKey: adminUsername
       podDisruptionBudget:
         maxUnavailable: 1
-        minAvailable: 2
       priorityClassName: production
       replicas: 3
       resources:
@@ -51,7 +50,6 @@ auth:
     pgpool:
       pdb:
         create: true
-        minAvailable: 2
         maxUnavailable: 1
       priorityClassName: production
       replicaCount: 3
@@ -65,7 +63,6 @@ auth:
     postgresql:
       pdb:
         create: true
-        minAvailable: 2
         maxUnavailable: 1
       priorityClassName: production
       replicaCount: 3
