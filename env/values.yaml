@@ -49,9 +49,7 @@ auth:
       storageClass: ssd-retain
     pgpool:
       pdb:
-        create: true
-        minAvailable:
-        maxUnavailable: 1
+        create: false
       priorityClassName: production
       replicaCount: 3
       resources:
@@ -63,9 +61,7 @@ auth:
           memory: 256Mi
     postgresql:
       pdb:
-        create: true
-        minAvailable:
-        maxUnavailable: 1
+        create: false
       priorityClassName: production
       replicaCount: 3
       resources:
