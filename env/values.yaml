@@ -50,7 +50,6 @@ auth:
     pgpool:
       pdb:
         create: true
-        maxUnavailable: 1
       priorityClassName: production
       replicaCount: 3
       resources:
@@ -63,7 +62,6 @@ auth:
     postgresql:
       pdb:
         create: true
-        maxUnavailable: 1
       priorityClassName: production
       replicaCount: 3
       resources:
