@@ -5,10 +5,11 @@ auth:
       existingSecret: auth-keycloak
       existingSecretKey: adminPassword
       persistence:
-        dbHost: jx-postgresql-ha-pgpool.jx-production.svc.cluster.local
-        existingSecret: auth-postgres
-        existingSecretPasswordKey: adminPassword
-        existingSecretUsernameKey: adminUsername
+        dbVendor: postgres
+        dbHost: jx-patroni.jx-production.svc.cluster.local
+        dbName: keycloak
+        dbUser: keycloak
+        dbPassword: vault:production/patroni:keycloak
       podDisruptionBudget:
         maxUnavailable: 1
       priorityClassName: production
@@ -23,58 +24,7 @@ auth:
       username: vault:production/auth/postgres:adminUsername
   keycloakAdminPassword: vault:production/auth/keycloak:adminPassword
   keycloakAdminUsername: vault:production/auth/keycloak:adminUsername
-  postgresAdminPassword: vault:production/auth/postgres:adminPassword
-  postgresAdminUsername: vault:production/auth/postgres:adminUsername
-  postgresql-ha:
-    global:
-      pgpool:
-        adminPassword: vault:production/auth/postgres:pgpoolAdminPassword
-        adminUsername: vault:production/auth/postgres:pgpoolAdminUsername
-      postgresql:
-        database: keycloak
-        password: vault:production/auth/postgres:adminPassword
-        repmgrPassword: vault:production/auth/postgres:repmgrPassword
-        repmgrUsername: vault:production/auth/postgres:repmgrUsername
-        username: vault:production/auth/postgres:adminUsername
-    metrics:
-      resources:
-        limits:
-          cpu: 50m
-          memory: 20Mi
-        requests:
-          cpu: 50m
-          memory: 20Mi
-    persistence:
-      size: 20Gi
-      storageClass: ssd-retain
-      mountPath: /bitnami
-    pgpool:
-      pdb:
-        create: false
-      priorityClassName: production
-      replicaCount: 3
-      resources:
-        limits:
-          cpu: 500m
-          memory: 256Mi
-        requests:
-          cpu: 500m
-          memory: 256Mi
-    postgresql:
-      pdb:
-        create: false
-      priorityClassName: production
-      replicaCount: 3
-      resources:
-        limits:
-          cpu: 500m
-          memory: 256Mi
-        requests:
-          cpu: 500m
-          memory: 256Mi
-  realms:
-    dev: dev
-    members: members
+  
 cleanup:
   Annotations:
     helm.sh/hook: pre-delete
@@ -110,4 +60,19 @@ expose:
 jenkins:
   Servers:
     Global: {}
+patroni:
+  credentials:
+    superuser: vault:production/patroni:superuser
+    admin: vault:production/patroni:admin
+    standby: vault:production/patroni:standby
+  persistentVolume:
+    storageClass: ssd-retain
+    size: 8Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 256Mi
+    requests:
+      cpu: 500m
+      memory: 256Mi
 prow: {}
