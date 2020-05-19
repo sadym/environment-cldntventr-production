@@ -45,9 +45,9 @@ auth:
           cpu: 50m
           memory: 20Mi
     persistence:
+      mountPath: /bitnami
       size: 20Gi
       storageClass: ssd-retain
-      mountPath: /bitnami
     pgpool:
       pdb:
         create: false
