@@ -1,0 +1,26 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: production-postgresql
+spec:
+  teamId: "production"
+  volume:
+    size: 16Gi
+    storageClass: ssd-retain
+  numberOfInstances: 5
+  users:
+    cldntvadmin:  # database owner
+    - superuser
+    - createdb
+    keycloak:
+  databases:
+    keycloak: keycloak
+  postgresql:
+    version: "12"
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      cpu: 500m
+      memory: 500Mi
