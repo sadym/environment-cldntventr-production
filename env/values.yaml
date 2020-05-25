@@ -5,11 +5,11 @@ auth:
       existingSecret: auth-keycloak
       existingSecretKey: adminPassword
       persistence:
-        dbVendor: postgres
         dbHost: jx-patroni.jx-production.svc.cluster.local
         dbName: keycloak
-        dbUser: keycloak
         dbPassword: vault:production/patroni:keycloak
+        dbUser: keycloak
+        dbVendor: postgres
       podDisruptionBudget:
         maxUnavailable: 1
       priorityClassName: production
@@ -24,7 +24,6 @@ auth:
       username: vault:production/auth/postgres:adminUsername
   keycloakAdminPassword: vault:production/auth/keycloak:adminPassword
   keycloakAdminUsername: vault:production/auth/keycloak:adminUsername
-  
 cleanup:
   Annotations:
     helm.sh/hook: pre-delete
@@ -55,19 +54,19 @@ expose:
     http: "false"
     tlsSecretName: tls-cloudnativeentrepreneur-com-p
     tlsacme: "true"
-    urltemplate: '{{.Service}}.{{.Domain}}'
+    urltemplate: '{{.Service}}-{{.Namespace}}.{{.Domain}}'
   production: true
 jenkins:
   Servers:
     Global: {}
 patroni:
   credentials:
-    superuser: vault:production/patroni:superuser
     admin: vault:production/patroni:admin
     standby: vault:production/patroni:standby
+    superuser: vault:production/patroni:superuser
   persistentVolume:
-    storageClass: ssd-retain
     size: 8Gi
+    storageClass: ssd-retain
   resources:
     limits:
       cpu: 500m
