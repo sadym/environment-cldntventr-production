@@ -4,6 +4,7 @@ metadata:
   name: production-postgresql
 spec:
   teamId: "production"
+  podPriorityClassName: "production"
   volume:
     size: 16Gi
     storageClass: ssd-retain
