@@ -14,13 +14,13 @@ auth:
       podDisruptionBudget:
         maxUnavailable: 1
       priorityClassName: production
-      replicas: 3
+      replicas: 5
       resources:
         limits:
           cpu: 1
           memory: 512Mi
         requests:
-          cpu: 1
+          cpu: 10m
           memory: 512Mi
       username: vault:production/auth/postgres:adminUsername
   keycloakAdminPassword: vault:production/auth/keycloak:adminPassword
