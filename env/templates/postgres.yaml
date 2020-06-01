@@ -6,7 +6,7 @@ spec:
   teamId: "production"
   podPriorityClassName: "production"
   volume:
-    size: 16Gi
+    size: 24Gi
     storageClass: ssd-retain
   numberOfInstances: 5
   users:
