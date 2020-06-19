@@ -33,11 +33,14 @@ cleanup:
   - --cleanup
 content:
   keycloak:
+    keycloak: keycloak-jx-production
+    realm: members
     redirectUris:
       allowAll: false
       includeNamespace: false
       domain: cloudnativeentrepreneur.com
       serviceName: content
+    url: https://auth.cloudnativeentrepreneur.com
   session:
     key: vault:production/auth/session:key
   cors:
@@ -74,11 +77,14 @@ jenkins:
 prow: {}
 www:
   keycloak:
+    keycloak: keycloak-jx-production
+    realm: members
     redirectUris:
       allowAll: false
       allowLocalhost: false
       includeNamespace: false
       domain: cloudnativeentrepreneur.com
       serviceName: www
+    url: https://auth.cloudnativeentrepreneur.com
   session:
     key: vault:production/auth/session:key
