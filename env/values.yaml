@@ -76,6 +76,8 @@ jenkins:
     Global: {}
 prow: {}
 www:
+  env:
+    SAPPER_CONTENT_GRAPHQL_URL: https://content.cloudnativeentrepreneur.com/graphql
   keycloak:
     keycloak: keycloak-jx-production
     realm: members
