@@ -31,6 +31,17 @@ cleanup:
     helm.sh/hook-delete-policy: hook-succeeded
   Args:
   - --cleanup
+content:
+  keycloak:
+    redirectUris:
+      allowAll: false
+      includeNamespace: false
+      domain: cloudnativeentrepreneur.com
+      serviceName: content
+  session:
+    key: vault:production/auth/session:key
+  cors:
+    origin: https://www.cloudnativeentrepreneur.com
 demo-app:
   keycloak:
     keycloak: keycloak-jx-production
@@ -61,3 +72,13 @@ jenkins:
   Servers:
     Global: {}
 prow: {}
+www:
+  keycloak:
+    redirectUris:
+      allowAll: false
+      allowLocalhost: false
+      includeNamespace: false
+      domain: cloudnativeentrepreneur.com
+      serviceName: www
+  session:
+    key: vault:production/auth/session:key
