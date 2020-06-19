@@ -32,6 +32,7 @@ cleanup:
   Args:
   - --cleanup
 content:
+  deployDomain: cloudnativeentrepreneur.com
   keycloak:
     keycloak: keycloak-jx-production
     realm: members
