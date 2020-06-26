@@ -32,20 +32,20 @@ cleanup:
   Args:
   - --cleanup
 content:
+  cors:
+    origin: https://www.cloudnativeentrepreneur.com
   deployDomain: cloudnativeentrepreneur.com
   keycloak:
     keycloak: keycloak-jx-production
     realm: members
     redirectUris:
       allowAll: false
-      includeNamespace: false
       domain: cloudnativeentrepreneur.com
+      includeNamespace: false
       serviceName: content
     url: https://auth.cloudnativeentrepreneur.com
   session:
     key: vault:production/auth/session:key
-  cors:
-    origin: https://www.cloudnativeentrepreneur.com
 demo-app:
   keycloak:
     keycloak: keycloak-jx-production
@@ -85,8 +85,8 @@ www:
     redirectUris:
       allowAll: false
       allowLocalhost: false
-      includeNamespace: false
       domain: cloudnativeentrepreneur.com
+      includeNamespace: false
       serviceName: www
     url: https://auth.cloudnativeentrepreneur.com
   session:
