@@ -45,7 +45,7 @@ content:
   session:
     key: vault:production/auth/session:key
   cors:
-    origin: https://www.cloudnativeentrepreneur.com
+    origin: cloudnativeentrepreneur.com
 demo-app:
   keycloak:
     keycloak: keycloak-jx-production
@@ -78,7 +78,8 @@ jenkins:
 prow: {}
 www:
   env:
-    SAPPER_CONTENT_GRAPHQL_URL: https://content.cloudnativeentrepreneur.com/graphql
+    SAPPER_CLIENT_CONTENT_GRAPHQL_URL: https://content.cloudnativeentrepreneur.com/graphql
+    SAPPER_SERVER_CONTENT_GRAPHQL_URL: http://content.jx-production.svc.cluster.local/graphql
   keycloak:
     keycloak: keycloak-jx-production
     realm: members
