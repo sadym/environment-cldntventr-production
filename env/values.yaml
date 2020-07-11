@@ -79,8 +79,8 @@ prow: {}
 www:
   env:
     SAPPER_CLIENT_CONTENT_GRAPHQL_URL: https://content.cloudnativeentrepreneur.com/graphql
-    SAPPER_SERVER_CONTENT_GRAPHQL_URL: http://content.jx-production.svc.cluster.local/graphql
     SAPPER_GTM_TRACKING_ID: vault:production/gtm:trackingId
+    SAPPER_SERVER_CONTENT_GRAPHQL_URL: http://content.jx-production.svc.cluster.local/graphql
   keycloak:
     keycloak: keycloak-jx-production
     realm: members
