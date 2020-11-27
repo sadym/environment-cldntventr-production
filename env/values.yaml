@@ -82,6 +82,9 @@ www:
     SAPPER_GTM_TRACKING_ID: vault:production/gtm:trackingId
     SAPPER_SERVER_CONTENT_GRAPHQL_URL: http://content.jx-production.svc.cluster.local/graphql
   keycloak:
+    admin:
+      username: vault:production/auth/keycloak:adminUsername
+      password: vault:production/auth/keycloak:adminPassword
     keycloak: keycloak-jx-production
     realm: members
     redirectUris:
@@ -93,3 +96,7 @@ www:
     url: https://auth.cloudnativeentrepreneur.com
   session:
     key: vault:production/auth/session:key
+  stripe:
+    publicKey: vault:production/stripe:publicKey
+    secretKey: vault:production/stripe:secretKey
+    webhookSecret: vault:production/stripe:webhookSecret
