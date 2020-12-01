@@ -97,7 +97,7 @@ www:
   session:
     key: vault:production/auth/session:key
   stripe:
-    membershipPlanId: plan_IT6YNWpTeZfo7M
+    membershipPlanId: plan_IUeF8lzZaNuVvi
     publicKey: vault:production/stripe:publicKey
     secretKey: vault:production/stripe:secretKey
     webhookSecret: vault:production/stripe:webhookSecret
